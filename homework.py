@@ -58,7 +58,7 @@ def send_message(message):
 
 def main():
     current_timestamp = int(time.time())  # Начальное значение timestamp
-
+    send_message(f'Bot started at {current_timestamp}')
     while True:
         try:
             homework_req = get_homeworks(current_timestamp)
