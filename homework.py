@@ -47,8 +47,9 @@ def get_homeworks(current_timestamp):
             params=params,
             headers=headers
         )
-    except Exception as e:
-        logging.error('Error at %s', 'division', exc_info=e)  # уточнить
+    except requests.exceptions.RequestException as e:
+        logging.error('Error at %s', 'division', exc_info=e)
+        raise
     return homework_statuses.json()
 
 
@@ -71,7 +72,8 @@ def main():
             time.sleep(5 * 60)  # Опрашивать раз в пять минут
 
         except Exception as e:
-            logging.error('Error at %s', 'division', exc_info=e)  # уточнить
+            logging.error('Error at %s', 'division', exc_info=e)
+            send_message(f'Ошибка {e}')
             time.sleep(5)
             continue
 
