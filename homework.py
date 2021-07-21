@@ -58,14 +58,14 @@ def send_message(message):
 
 
 def main():
-    current_timestamp = int(time.time())  # Начальное значение timestamp
+    current_timestamp = int(time.time())   # Начальное значение timestamp
     send_message(f'Bot started at {time.ctime(current_timestamp)}')
     while True:
         try:
             homework_req = get_homeworks(current_timestamp)
             if homework_req.get('homeworks'):
                 send_message(parse_homework_status(
-                    homework_req.get('homework')[0])
+                    homework_req.get('homeworks')[0])
                 )
             if homework_req.get('current_date') is not None:
                 current_timestamp = homework_req.get('current_date')
